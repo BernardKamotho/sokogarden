@@ -4,29 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Update User</title>
+    {% include 'header.html' %}
   </head>
   <body>
-    <h1>Update User: {{ user[0] }}</h1>
-    <form action="/update/{{ user[0] }}" method="POST">
-      <label>First Name:</label>
-      <input type="text" name="first_name" value="{{ user[1] }}" /><br />
+    {% include 'navbar.html' %}
+    <section class="row p-5">
+      <div class="col-md-6">
+        <div class="card shadow p-2">
+          <h1 class="text-center">Update User: {{ user[0] }}</h1>
+          <form action="/update/{{ user[0] }}" method="POST">
+            <label>First Name:</label>
+            <input
+              type="text"
+              name="first_name"
+              value="{{ user[1] }}"
+              class="form-control"
+            /><br />
 
-      <label>Last Name:</label>
-      <input type="text" name="last_name" value="{{ user[2] }}" /><br />
+            <label>Last Name:</label>
+            <input
+              type="text"
+              name="last_name"
+              value="{{ user[2] }}"
+              class="form-control"
+            /><br />
 
-      <label>Password:</label>
-      <input type="password" name="password" value="{{ user[3] }}" /><br />
+            <label>Password:</label>
+            <input
+              type="text"
+              name="password"
+              value="{{ user[3] }}"
+              class="form-control"
+            /><br />
 
-      <label>Email:</label>
-      <input type="email" name="email" value="{{ user[4] }}" /><br />
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value="{{ user[4] }}"
+              class="form-control"
+            /><br />
 
-      <label>Phone Number:</label>
-      <input type="text" name="phone_number" value="{{ user[5] }}" /><br />
+            <label>Phone Number:</label>
+            <input
+              type="text"
+              name="phone_number"
+              value="{{ user[5] }}"
+              class="form-control"
+            /><br />
 
-      <label>Profile Picture:</label>
-      <input type="text" name="profile_picture" value="{{ user[6] }}" /><br />
+            <label>Profile Picture:</label>
+            <input
+              type="text"
+              name="profile_picture"
+              value="{{ user[6] }}"
+              class="form-control"
+            /><br />
 
-      <button type="submit">Update</button>
-    </form>
+            <button type="submit" class="btn btn-success">Update</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </section>
   </body>
 </html>
