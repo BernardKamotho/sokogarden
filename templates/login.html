@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login page</title>
+    {% include 'header.html' %}
+  </head>
+  <body>
+    {% include 'navbar.html' %} <br />
+    <section class="row">
+      <div class="col-md-6 p-3">
+        <h4 class="text-danger">{{error}}</h4>
+
+        <h3 class="text-info text-center">Enter the Login Details</h3>
+        <div class="card shadow p-4">
+          <form action="/login" method="post">
+            <label>Username:</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              class="form-control"
+              required
+            />
+            <label>Password:</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              class="form-control"
+              required
+            />
+            <br />
+            <input type="submit" value="Login" class="btn btn-success" />
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </section>
+  </body>
+</html>

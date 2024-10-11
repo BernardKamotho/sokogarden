@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    {% include 'header.html' %}
+  </head>
+  <body>
+    {% include 'navbar.html' %} {% include 'carousel.html' %} <br />
+
+    <!-- {{person}} -->
+    
+    <center><h2 class="text-danger">Smartphones</h2></center>
+    <section class="slider p-4">
+      <ul class="cs-hidden autoWidth">
+        {% for smartphone in smartphones %}
+        <li>
+          <div class="box">
+            <div class="slide-img">
+              <img
+                src="../static/images/{{smartphone[5]}}"
+                height="50"
+                width="50"
+                alt=""
+              />
+              <div class="overlay">
+                <a href="/single_item/{{smartphone[0]}}" class="buy-btn"
+                  >Buy Now</a
+                >
+              </div>
+            </div>
+            <div class="detail-box">
+              {{smartphone[1]}}
+
+              <b class="text-warning">KES {{smartphone[3]}}</b>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    <br />
+    <h2 class="text-danger text-center">Clothes</h2>
+    <!-- {{clothes}} -->
+    <section class="slider p-4">
+      <ul class="cs-hidden autoWidth">
+        {% for cloth in clothes %}
+        <li>
+          <div class="box">
+            <div class="slide-img">
+              <img
+                src="../static/images/{{cloth[5]}}"
+                height="50"
+                width="50"
+                alt=""
+              />
+              <div class="overlay">
+                <a href="/single_item/{{cloth[0]}}" class="buy-btn">Buy Now</a>
+              </div>
+            </div>
+            <div class="detail-box">
+              {{cloth[1]}}
+
+              <b class="text-warning">KES {{cloth[3]}}</b>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </body>
+</html>

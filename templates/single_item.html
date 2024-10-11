@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single Item</title>
+    {% include 'header.html' %}
+  </head>
+  <body>
+    {% include 'navbar.html' %} <br />
+    <section class="row">
+      <div class="col-md-6">
+        <img
+          src="../static/images/{{product[5]}}"
+          width="300px"
+          height="300px"
+          alt=""
+        />
+        <h3 class="ps-5 text-success">{{product[1]}}</h3>
+      </div>
+      <div class="col-md-6">
+        <p>{{product[2]}}</p>
+        <h2>Kes: <span class="text-warning">{{product[3]}}</span></h2>
+        <h3>Category: <span class="text-danger">{{product[4]}}</span></h3>
+      </div>
+    </section>
+    <br />
+    <section class="row">
+      <div class="col-md-6 p-4">
+        {% if session['key'] %}
+        <div class="card shadow">
+          <form action="/mpesapayment" method="post">
+            <label>Phone number:</label>
+            <input
+              type="number"
+              name="phone"
+              placeholder="Enter your phone number format 2547..."
+              class="form-control"
+              required
+            />
+            <label>Amount:</label>
+            <input
+              type="number"
+              name="amount"
+              value="{{product[3]}}"
+              class="form-control"
+              readonly
+            />
+            <br />
+            <input type="submit" value="Pay Now" class="btn btn-success" />
+          </form>
+        </div>
+        {% else %}
+        <h4>Login to complete the payment</h4>
+        <a href="/login" class="btn btn-success">Login</a>
+        {% endif %}
+      </div>
+      <div class="col-md-6"></div>
+    </section>
+  </body>
+</html>

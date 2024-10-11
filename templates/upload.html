@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload</title>
+    {% include 'header.html' %}
+  </head>
+  <body>
+    {% include 'navbar.html' %} <br />
+    <section class="row">
+      <div class="col-md-6">
+        <div class="card shadow p-4">
+          <h4 class="text-success">{{success}}</h4>
+          <form action="/upload" method="post" enctype="multipart/form-data">
+            <label>Product Name:</label>
+            <input
+              type="text"
+              name="product_name"
+              placeholder="Enter the product name"
+              class="form-control"
+              required
+            />
+            <label>Product Description:</label>
+            <input
+              type="text"
+              name="product_desc"
+              placeholder="Enter the Description of the product"
+              class="form-control"
+              required
+            />
+            <label>Product Cost:</label>
+            <input
+              type="number"
+              name="product_cost"
+              placeholder="Enter the Cost of the product"
+              class="form-control"
+              required
+            />
+            <label>Choose a chategory</label>
+            <select name="product_category" class="form-control" required>
+              <option value="Electronics">Electronics</option>
+              <option value="Smartphones">Smartphones</option>
+              <option value="Clothes">Clothes</option>
+              <option value="Detergents">Detergents</option>
+            </select>
+            <label>Product Photo</label> <br />
+            <input type="file" name="product_image_name" /> <br />
+            <br />
+            <input type="submit" value="Add Product" class="btn btn-success" />
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </section>
+  </body>
+</html>

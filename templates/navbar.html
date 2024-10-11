@@ -1,0 +1,65 @@
+<section class="row">
+  <div class="col-md-12">
+    <nav class="navbar navbar-expand-md navbar-light btn-light p-3">
+      <a href="/" class="navbar-brand"
+        >Soko <b class="text-success">Garden</b></a
+      >
+      <button
+        type="button"
+        class="navbar-toggler"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+          {% if session['key'] %}
+          <a href="/" class="nav-item nav-link">Link1</a>
+          <a href="" class="nav-item nav-link">Link2</a>
+          <a href="" class="nav-item nav-link">Link3</a>
+          {% else %}
+          <a href="/" class="nav-item nav-link">Home</a>
+          <a href="" class="nav-item nav-link">Blog</a>
+          <a href="" class="nav-item nav-link">About US</a>
+          {% endif %}
+        </div>
+        <div class="ms-auto">
+          <!--    TODO Logout-->
+          {% if session['key'] %}
+          <span class="me-2">hello: {{ session['key'] }}</span>
+
+          <!-- Display profile picture next to the username -->
+          {% if session['profile_picture'] %}
+          <img
+            src="../static/images/{{ session['profile_picture'] }}"
+            alt="Profile Picture"
+            style="
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              margin-right: 10px;
+            "
+          />
+          {% endif %}
+
+          <a href="/upload">
+            <input type="button" value="upload" class="btn btn-success me2" />
+          </a>
+          <a href="/logout"
+            ><input type="button" value="Logout" class="btn btn-danger me2"
+          /></a>
+          {% else %}
+          <a href="/login">
+            <input type="button" value="Login" class="btn btn-success me2" />
+          </a>
+          <a href="/register">
+            <input type="button" value="Register" class="btn btn-success me2" />
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
