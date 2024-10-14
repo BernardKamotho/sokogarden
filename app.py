@@ -204,6 +204,67 @@ def update_user(username):
 
     return render_template("user_update_form.html", user=user)
 
+@app.route("/allproducts")
+def product():
+    
+        # create a db connection
+        connection = pymysql.connect(host="localhost", user="root", password="", database="sokogardenb")
+        # create an sql query. The %s is a placeholder, to be replaced with actual data when we execute the sql
+        sql = "SELECT * FROM `products`"
+        # create a cursor that will help to execute the sql
+        cursor = connection.cursor()
+        # execute the query
+        cursor.execute(sql)
+
+        # fetch one person
+        product = cursor.fetchall()
+        return render_template("productupdate.html", product=product)
+
+
+@app.route("/deleteProduct/<product_id>", methods=["POST"])
+def delete_product(product_id):
+    connection = pymysql.connect(host="localhost", user="root", password="", database="sokogardenb")
+    cursor = connection.cursor()
+
+    # SQL to delete the user by username
+    sql = "DELETE FROM products WHERE product_id = %s"
+    cursor.execute(sql, (product_id,))
+    connection.commit()
+    
+    return redirect("/allproducts")  # Redirect back to the user list after deletion
+
+
+@app.route("/updateProduct/<product_id>", methods=["GET", "POST"])
+def update_product(product_id):
+    connection = pymysql.connect(host="localhost", user="root", password="", database="sokogardenb")
+    cursor = connection.cursor()
+
+    if request.method == "POST":
+        # Get updated data from form
+        product_name = request.form.get('product_name')
+        product_description = request.form.get('product_description')
+        product_price = request.form.get('product_price')
+        product_category = request.form.get('product_category')
+        product_picture = request.form.get('product_picture')
+
+        # Update the user details in the database
+        sql = """
+        UPDATE products 
+        SET product_name = %s, product_desc = %s, product_cost = %s, product_category = %s, product_image_name = %s
+        WHERE product_id = %s
+        """
+        cursor.execute(sql, (product_name, product_description, product_price, product_category, product_picture,  product_id))
+        connection.commit()
+
+        return redirect("/allproducts")  # Redirect to the products list
+
+    # For GET, we display the current user data to be updated
+    sql = "SELECT * FROM products WHERE product_id = %s"
+    cursor.execute(sql, (product_id,))
+    one_product = cursor.fetchone()
+
+    return render_template("product_update_form.html", oneProduct=one_product)
+
 
 # the imports for the mpesa function
 import requests

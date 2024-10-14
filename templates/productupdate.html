@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Product Details</title>
+    {% include 'header.html' %}
+    <style>
+      /* Styling the table and rows */
+      table {
+        width: 95%;
+        border-collapse: collapse;
+        margin: 20px auto; /* Center the table */
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+        border: 2px solid #000;
+      }
+
+      th {
+        background-color: #4caf50; /* Header background */
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9; /* Default even row background */
+      }
+
+      tr:nth-child(odd) {
+        background-color: #fff; /* Default odd row background */
+      }
+
+      /* Hover effect for table rows */
+      tr:hover {
+        background-color: #e0f7fa; /* Light blue background on hover */
+        transition: background-color 0.3s ease; /* Smooth transition */
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="text-center text-danger text-decoration-underline">
+      All Products
+    </h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Product Description</th>
+          <th>Product Price</th>
+          <th>Product Category</th>
+          <th>Product Picture</th>
+          <th>Update</th>
+          <!-- New column for updating -->
+          <th>Delete</th>
+          <!-- New column for delete button -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in product %}
+        <tr>
+          <td>{{ product[0] }}</td>
+          <td>{{ product[1] }}</td>
+          <td>{{ product[2] }}</td>
+          <td>{{ product[3] }}</td>
+          <td>{{ product[4] }}</td>
+          <td>
+            <img
+              src="../static/images/{{ product[5] }}"
+              alt="Profile Picture"
+              width="50"
+            />
+          </td>
+          <!-- Update column -->
+          <td>
+            <a href="/updateProduct/{{ product[0] }}">
+              <button type="button" class="action-btn">
+                <img
+                  src="../static/images/update.png"
+                  alt="Update"
+                  class="action-icon"
+                  height="30"
+                  width="30"
+                />
+                <br />
+                update product details</button
+              ><br />
+            </a>
+          </td>
+          <td>
+            <form action="/deleteProduct/{{ product[0] }}" method="POST">
+              <button type="submit" class="delete-btn">
+                <img
+                  src="../static/images/delete.png"
+                  alt="Delete"
+                  class="delete-icon"
+                />Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
